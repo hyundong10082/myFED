@@ -2,23 +2,253 @@
 <html>
 
 <head>
-    <title>네이버 요약뉴스 - 경제</title>
+    <title>네이버 요약뉴스</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/sub.css">
-    <!-- 
-        link 요소
-        - 외부 스타일시트 호출(익스터널방식:external)
-        - rel(relavant)속성은 관련있는 셋팅을 지정하는 속성
-        - href(hyper text reference) 속성은 파일위치지정
-        - html5 이전버전에서는 type="text/css"속성을 씀
-     -->
+    <!-- 스타일시트 코딩구역 : 인터널방식 -->
+    <style>
+        /* 스타일 시트를 사용하는 영역 */
+        /* CSS문법만 쓸 수 있음! */
+        /******************************************* 
+            기본 사용법:
+            ________________
+
+            선택자 {
+                속성명: 값;
+            }
+            _________________
+
+            - 선택자 : 태그명, 아이디명, 클래스명 등
+            - 속성명 : 각 요소를 구성하는 상세속성들
+            - 값 : 각 속성에서 사용할 수 있는 값들
+            _____________________________________
+
+            [ CSS 선택자(Selector) ]
+            1. 타입선택자 : 요소명 (예:h1/a/p/div)
+            2. 자손선택자 : 띄어쓰기 (예: h1 a)
+            3. 아이디선택자 : # (예: #my)
+            4. 클래스선택자 : . (예: .you)
+            5. 종속선택자 : 태그명+아이디/클래스명
+                (예: header#top)
+                -> 종속선택자를 쓰는이유:
+                1)이름을 쓴 요소를 밝혀서 코딩함
+                2)같은이름의 클래스를 다양하게 쓸때
+                -> h1.ct / div.ct 서로 다르게 코딩함!
+            6. 직계자식선택자 : > (예: div>a)
+            7. 그룹선택자 : , (예: p,div)
+            8. 형제선택자 : + (예: a+a)
+            9. 다중형제선택자 : ~ (틸드) 형제요소 뒤쪽 모두
+                (예: li:nth-child(4)~li)
+            10. 속성선택자 : [] (예: a[href=#])
+            ___________________________________
+
+            [ 요소의 박스모델 ] - 네모난세상!
+            - 네모의 구성요소는?
+            1. 가로크기 : width
+            2. 세로크기 : height
+            3. 경계선 : border
+            4. 안쪽여백 : padding
+            5. 바깥여백 : margin
+
+            -> w3c 박스모델
+            https://www.w3schools.com/css/css_boxmodel.asp
+
+
+        *******************************************/
+
+        /* 공통클래스 
+        - 같은 디자인을 가지는 
+        요소에 같은 이름을 준다! */
+
+        /* 중앙배치 클래스 */
+        .ct {
+            /* 가로크기 - width */
+            width: 760px;
+            /* w760 */
+            /* 테두리 - border */
+            border: 1px solid silver;
+            /* bd */
+            /* 안쪽여백(패딩) - padding */
+            padding: 10px;
+            /* p10 */
+            /* 바깥여백(마진) - margin */
+            margin: 0 auto;
+            /* 블록박스 중앙정렬 -> 마영오! 
+            양쪽바깥여백을 auto로 주면 양쪽여백을
+            등분할 하기 때문에 박스가 가운데 위치함*/
+            /* 
+                [ 마진값 설정하기 ]
+                margin: 값; (4방향)
+                margin: 값 값; (위아래 양쪽)
+                margin: 값 값 값; (위 양쪽 아래)
+                margin: 값 값 값 값; 
+                    (위 오른 아래 왼 -> 시계방향!)
+
+                ->>> padding도 위와 같음!!!
+
+                개별설정은
+                margin-top, margin-bottom,
+                margin-left, margin-right
+
+                ->>> padding도 위와 같음!!!
+            */
+            /* 블록요소 내부의 텍스트/인라인요소 중앙정렬 */
+            text-align: center;
+            /* tac */
+        }
+
+        /* 다중클래스 적용연습 */
+
+        /* 글자색, 글자그림자 클래스 */
+        .fc {
+            color: skyblue;
+        }
+
+        /* 글자밑줄 클래스 */
+        .fd {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            /* 데코레이션 선 스타일 - 점선 */
+        }
+
+
+
+
+        /* 1. 상단영역 */
+        header#top {
+            /* 배경색 : background-color */
+            background-color: rgb(255, 213, 28);
+
+            /* 하단마진 : margin-bottom */
+            margin-bottom: 20px;
+            /* mb20 */
+            /* 기존 .ct에 설정된 마진값 보다
+            우선적용위해 아이디로 설정함! */
+        }
+
+        /* 1-1. 제목 */
+        #top h1 {
+            color: black;
+            
+
+        }
+
+        /* 1-2. 메뉴 */
+        .gnb a {
+            color: black;
+            /* 밑줄변경: text-decoration
+            (기본값 underline) */
+            text-decoration: none;
+            border: 1px solid rgba(223,190,106,0);
+            background-position: 99% 50%;
+            font-weight: bold;   
+
+        }
+
+        /* 메뉴a에 마우스 오버시 */
+        /* 선택자:hover -> 마우스 오버시 가상클래스 */
+        /* a+a 는 앞에 a요소가 있는 형제a요소를 선택
+        ->  결과적으로 첫번째 a요소만 제외됨! */
+        .gnb a+a:hover {
+        
+            color: rgb(0, 0, 0);
+            border-radius: 4px;
+        }
+
+        /* 로고이미지 */
+        /* .gnb>a>img{ -> 직계자식으로는 a생략불가 */
+        /* .gnb a img{ -> 자손선택으로는 a생략가능 */
+        .gnb img {
+            vertical-align: -3px;
+            /* va */
+            /* 
+                vertical-align 속성
+                -> 인라인요소간 진행방향 세로정렬
+                -> 값은 정해진값 또는 수치값을 준다!
+                정해진값:top/middle/bottom/baseline
+
+                참고) 이미지는 기본적으로 옆에 글자가
+                올때 vertical-align:baseline을
+                기본값을 가진다. baseline은 이미지 하단
+                선을 기준한다는 의미임!
+            */
+        }
+
+        /* 2. 메인영역 */
+        main#cont {
+            /* 하단마진 */
+            margin-bottom: 20px;
+            /* mb20 */
+        }
+
+        /* 메인이미지 */
+        #cont img {
+            width: 100% !important;
+            /* 
+                [ CSS 적용 우선순위 ]
+                inline > id > class > type
+
+                -> !important 를 설정값 뒤에쓰면 가장우선함
+                -> 주의사항: !important를 남발하면
+                JS구현시 인라인 css적용이 안되거나 다른
+                변경 덮어쓰기가 안될 수 있으므로 사용에 유의한다!
+
+                -> 일반적으로 우선순위가 밀리는 경우
+                상위부모요소를 선택하여 자손선택자 형식으로
+                선택하면 우선순위가 올라간다!!!
+            */
+        }
+
+        /* 하단주소 */
+        footer#info {
+            /* 배경색 */
+            background-color: rgb(255, 213, 28);
+        }
+
+        footer#info address {
+            /* 안쪽여백 */
+            padding: 20px;
+            /* 글자 스타일: font-style */
+            font-style: normal;
+            /* fsn */
+            /* 
+                font-style 속성
+                - italic 이탤릭체
+                - normal 특징없음
+
+                참고) address 요소는 
+                이탤릭체가 기본셋팅되어 있다!
+            */
+            /* 글자색 */
+            color: rgb(27, 27, 27);
+            /* 글자크기: font-size */
+            font-size: 14px;
+            /* fz14 */
+            /* 
+                font-size 속성 : 글자크기
+                - 기본크기는 16px
+                12pt=16px (이육사)
+            */
+            line-height: 1.6;
+            /* 
+                line-height : 줄간격
+                - 단위없이 사용하면 글자크기기준 배수
+                - px, em 등 여러가지 단위 사용가능
+            */
+        }
+
+        /* 주소의 영문이름만 이탤릭체 */
+        #info span {
+            font-style: italic;
+        }
+
+    </style>
 </head>
 
 <body>
     <!-- 1. 상단영역 -->
     <header id="top" class="ct">
         <!-- 1-1.제목 -->
-        <h1>네이버 요약뉴스 - 경제</h1>
+        <h1>네이버 요약뉴스</h1>
         <!-- 1-2.메뉴 -->
         <nav class="gnb">
             <a href="index.html">
@@ -34,47 +264,27 @@
     </header>
     <!-- 2. 메인영역 -->
     <main id="cont" class="ct">
-        <!-- 2-1. 언론사로고 -->
-        <div class="prlogo">
-            <a href="http://www.inews24.com/" target="_blank">
-                <img src="data:image/jpeg;base64,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" alt="아이뉴스" />
-            </a>
-        </div>
-        <!-- 2-2. 기사제목 -->
-        <h2 class="atit">
-            '박재범 소주' 7월부터 GS25에서 판매 시작…'오픈런' 끝
-        </h2>
-        <!-- 2-3. 기사사진(+사진설명) -->
-        <figure class="afig">
-            <img src="./images/art2.jpg" alt="경제기사사진" />
-            <figcaption>원소주 스피릿 티저 연출컷. [사진=원스피리츠]</figcaption>
-        </figure>
-        <!-- 
-              figure 요소 : 이미지나 표, 그림 등을 넣는박스
-              - figcaption 요소 : 이미지설명박스(옵션)
-              -> 주의 : 박스 하단에 다른 태그 사용금지!
-           -->
+        <img src="https://img5.yna.co.kr/etc/inner/KR/2022/05/04/AKR20220504034700009_01_i_P4.jpg">
+        <figcaption>
+            코로나 봉쇄령에 텅 빈 상하이 도심 고속도로
+        </figcaption>
+        <section>
+            <p> 블룸버그통신에 따르면 피치는 이날 올해 중국의 국내총생산(GDP) 성장률 전망치를 종전 4.8%에서 4.3%로 낮췄다.
 
-        <!-- 2-4. 기사내용 -->
-        <section class="atc">
-            <p>'원소주 스피릿'은 강원도 원주의 쌀 토토미를 발효해 증류를 거친 고급 소주로, 원스피리츠가 앞서 한정 수량으로 선보여 '오픈런' 현상을 일으킨 '원소주'의 후속 상품이다.</p>
+                피치는 코로나19 확산을 막기 위한 도시 봉쇄의 여파로 지난달 급격하게 위축된 중국 경제의 활동이 이번 달에는 좀 나아질 것으로 예상했다.
+            
+                그렇지만 강력한 봉쇄 조치에도 중국은 여전히 코로나19 확산을 늦추거나 차단하는 데 실패하는 등의 지속적인 위험에 노출돼 있다고 평가했다.
 
-            <p>원스피리츠와 GS25는 '원소주'의 아이덴티티를 지키면서도 대량 생산과 더 많은 대중들이 즐기기 적합하도록 알코올 도수, 숙성 과정, 가격 등을 최적화해 '원소주 스피릿'을 선보인다는 계획이다.</p>
-            
-            <p>오진석 GS리테일 플랫폼BU장(부사장)은 "많은 유통사가 뜨거운 관심을 보였던 원소주를 GS25에서 선보일 수 있게 돼 기쁘다"며 "GS25와 와인25플러스 등 온오프라인 채널을 통해 특별한 의미가 있는 고급 증류주 시장에 큰 이정표를 남기는 사례가 될 수 있도록 준비하겠다"고 전했다.</p>
-            
-            <p>박재범 원스피리츠 대표는 "GS25와 와인25플러스 등 대한민국을 대표하는 주류 유통 플랫폼을 보유한 GS리테일과 전략적 제휴를 통해 원스피리츠가 MZ세대들과 문화의 영역을 뛰어 넘어 리테일 영역에서도 소통을 강화하고자 한다"고 밝혔다.</p>
-            
-           
+                피치는 중국 당국이 '제로 코로나' 정책을 적어도 올해 말까지는 엄격하게 적용하면서 사회 기간시설 투자 확대, 금리·지급준비율 인하 같은 추가 경기부양책을 내놓을 것으로 예상했다.
+            </p>
         </section>
-        <!-- section요소 : 내용구분박스(div형제) -->
+        <section>
+            <a href="https://www.yna.co.kr/view/AKR20220504034700009?input=1195m">원본기사링크</a>
+            <a>김계환 기자 kp@yna.co.kr
+            </a>
+        </section>
+        
 
-        <!-- 2-5. 기자소개 -->
-        <div class="byrep"> 김태헌 기자 kth82@inews24.com</div>
-        <!-- 2-6. 원본기사링크 -->
-        <div class="orga">
-            <a href="https://n.news.naver.com/mnews/article/031/0000670410?sid=101" target="_blank">원본기사</a>
-        </div>
     </main>
     <!-- 3. 하단영역 -->
     <footer id="info" class="ct">
@@ -86,71 +296,7 @@
         </address>
     </footer>
 
-    <!-- 
-            [ html 요소들 ]
-
-            1. div : 컨텐츠 구분박스
-            (divide, division)
-            -> 옆에 아무도 못옴 -> 블록요소!
-
-            2. div의 형제들 소개!
-            -> 레이아웃을 잡을때 어떤 내용부분인지
-            알 수 있도록 의미가있는 블록요소들!(시멘틱요소)
-            1) header - 상단영역
-            2) footer - 하단영역
-            3) main - 메인영역(한 페이지에 한번만 사용!)
-            4) nav - 네비게이션 메뉴
-            5) aside - 부수적인 내용
-            6) section - 내용 구분을 위한 영역
-            7) article - 독립적인 내용을 구분하는 영역
-                (보통 article이나 section은
-                w3c에서 heading태그(h1~h6)를 
-                내용으로 함께쓸것을 권고하고 있다!)
-
-            3. img 요소: 이미지를 불러오는 요소
-            - src 속성 - 이미지경로셋팅
-            (source 줄임말)
-            - alt 속성 - 이미지설명
-            (alternative text - 대체 텍스트)
-            -> alt는 필수속성으로 웹접근성을 위한속성
-            (웹접근성은 평등의 원칙으로 누구나 
-            이미지의 설명을 들어볼 수 있게함 - 스크린 
-            리더기에서 이것을 읽어준다!)
-
-            4. address 요소 : 주소나 대표자, 전화번호 등을
-                                담는 요소
-                -> 태그명이 "주소"라는 뜻이 있으므로
-                시멘틱!하다! (의미가 있다!)
-                Sementic Element
-
-            5. span 요소 : 인라인요소 범위지정
-                -> span은 '범위'라는 의미의 단어
-                -> 인라인요소로써 다른 아무런 셋팅이 없다!
-
-
-            ____________________________________
-
-            [ 요소 공통 속성 - 어느요소나 쓸 수 있음 ]
-            
-            1. style 속성 - css 셋팅을 해주는 인라인속성
-                -> 값은 아래와 같이 셋팅함
-                style="속성명:값;속성명:값;"
-                _________________________
-                :콜론   ;세미콜론 - 잘 구분하자!
-
-            2. title 속성 - 툴팁을 띄워주는 속성
-
-            _____________________________________
-
-            [ html 요소 이름 ]
-            1. id명 : 요소를 구분해주는 유일한 이름
-            2. class명 : 요소를 공통적으로 구분하는
-            이름-> 클래스는 한 요소에 여러개 적용가능!
-            (띄어쓰기로 구분함!)
-            예)
-            <h1 id="my" class="rbb coo ytt">하하</h1>
-
-         -->
+    
 </body>
 
 </html>
